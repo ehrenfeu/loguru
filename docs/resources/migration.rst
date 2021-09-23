@@ -240,11 +240,11 @@ This is done on the fixture itself by mokeypatching |caplog|_. In your ``conftes
 
     @pytest.fixture
     def caplog(_caplog):
-        class PropogateHandler(logging.Handler):
+        class PropagateHandler(logging.Handler):
             def emit(self, record):
                 logging.getLogger(record.name).handle(record)
 
-        handler_id = logger.add(PropogateHandler(), format="{message} {extra}", level="TRACE")
+        handler_id = logger.add(PropagateHandler(), format="{message} {extra}", level="TRACE")
         yield _caplog
         logger.remove(handler_id)
 
